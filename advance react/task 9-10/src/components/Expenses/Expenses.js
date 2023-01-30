@@ -4,6 +4,7 @@ import Card from "../UI/Card";
 import ExpensesFilter from "./ExpensesFilter";
 import "./Expenses.css";
 import { useState } from "react";
+import ExpenseChart from "./ExpensesChart";
 
 
 function Expenses(props){
@@ -20,9 +21,12 @@ const filteredExpenses=props.items.filter(expense=>{
   return (<div>
     <Card className="expenses">
     <ExpensesFilter selected ={filteredYear} onChangeFilter={filterChangeHandler}/>
+    
     {/* {expensesContent} */}
     {/* their are 3 ways to do this */}
     {/* This is the first way */}
+    {/* their is lternative way
+    just store what we want in const and chnage the value accordingly */}
     {/* {filteredExpenses.length === 0?(<p>No expenses found</p>):(filteredExpenses.map((expense)=>(<ExpenseItem key={expense.id} title={expense.title} amount={expense.amount} date={expense.date}/>)))} */}
     {/* in the javascript if we have two conditions like && then if the first condition satisfies then return the second statement */}
     {/* {filteredExpenses.length === 0 && <p>No expenses found</p>}
@@ -59,6 +63,7 @@ const filteredExpenses=props.items.filter(expense=>{
           />
         );
       })} */}
+      <ExpenseChart expenses={filteredExpenses}/>
       <ExpensesList items={filteredExpenses}/>
   </Card>
   </div>);
