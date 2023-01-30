@@ -1,8 +1,9 @@
-import React,{useState} from "react";
-import ExpenseItem from "./ExpenseItem";
+import React from "react";
+import ExpensesList from "./ExpensesList";
 import Card from "../UI/Card";
 import ExpensesFilter from "./ExpensesFilter";
 import "./Expenses.css";
+import { useState } from "react";
 
 
 function Expenses(props){
@@ -14,10 +15,19 @@ const filteredExpenses=props.items.filter(expense=>{
   return expense.date.getFullYear().toString() === filteredYear;
 });
 
+// THIRD WAY TO HANDLE CONDITIONS
+
   return (<div>
     <Card className="expenses">
     <ExpensesFilter selected ={filteredYear} onChangeFilter={filterChangeHandler}/>
-    {filteredExpenses.map((expense)=>(<ExpenseItem key={expense.id} title={expense.title} amount={expense.amount} date={expense.date}/>))}
+    {/* {expensesContent} */}
+    {/* their are 3 ways to do this */}
+    {/* This is the first way */}
+    {/* {filteredExpenses.length === 0?(<p>No expenses found</p>):(filteredExpenses.map((expense)=>(<ExpenseItem key={expense.id} title={expense.title} amount={expense.amount} date={expense.date}/>)))} */}
+    {/* in the javascript if we have two conditions like && then if the first condition satisfies then return the second statement */}
+    {/* {filteredExpenses.length === 0 && <p>No expenses found</p>}
+    {filteredExpenses.length>0 && filteredExpenses.map((expense)=>(<ExpenseItem key={expense.id} title={expense.title} amount={expense.amount} date={expense.date}/>))} */}
+    {/* {filteredExpenses.map((expense)=>(<ExpenseItem key={expense.id} title={expense.title} amount={expense.amount} date={expense.date}/>))} */}
           {/* <ExpenseItem
         title={props.items[0].title}
         amount={props.items[0].amount}
@@ -49,6 +59,7 @@ const filteredExpenses=props.items.filter(expense=>{
           />
         );
       })} */}
+      <ExpensesList items={filteredExpenses}/>
   </Card>
   </div>);
 }
